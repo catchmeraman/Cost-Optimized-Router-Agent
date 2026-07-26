@@ -1,0 +1,21 @@
+version: 0.2
+env:
+  variables:
+    ECR_REPO: "bedrock-agentcore-cost-router-agent"
+    AWS_DEFAULT_REGION: "us-east-1"
+phases:
+  pre_build:
+    commands:
+      - ECR_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_URI
+  build:
+    commands:
+      - IMAGE_TAG="v1-$(date +%Y%m%d%H%M%S)"
+      - docker build -t $ECR_REPO:$IMAGE_TAG .
+      - docker tag $ECR_REPO:$IMAGE_TAG $ECR_URI/$ECR_REPO:$IMAGE_TAG
+      - docker tag $ECR_REPO:$IMAGE_TAG $ECR_URI/$ECR_REPO:latest
+      - docker push $ECR_URI/$ECR_REPO:$IMAGE_TAG
+      - docker push $ECR_URI/$ECR_REPO:latest
+  post_build:
+    commands:
+      - echo "Image pushed - $ECR_URI/$ECR_REPO:$IMAGE_TAG"
