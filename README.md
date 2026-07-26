@@ -165,7 +165,7 @@ def _route_and_respond(self, prompt, session_id):
 Runtime: <YOUR_RUNTIME_ID> (READY v1)
 ECR: bedrock-agentcore-cost-router-agent
 DynamoDB: agent-response-cache
-CodeBuild: cost-router-agent-build (ARM64)
+CodeBuild: <YOUR_CODEBUILD_PROJECT> (ARM64)
 ```
 
 ---
