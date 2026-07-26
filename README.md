@@ -73,7 +73,7 @@ Response (cached for next time)
 ✅ "Diagnose slow..." (repeat)   → CACHE HIT ($0)
 ```
 
-**Runtime:** `cost_router_agent-PXkaJmHjOl` — READY v1
+**Runtime:** `<YOUR_RUNTIME_ID>` — READY v1
 
 ---
 
@@ -162,7 +162,7 @@ def _route_and_respond(self, prompt, session_id):
 
 ```bash
 # Already deployed:
-Runtime: cost_router_agent-PXkaJmHjOl (READY v1)
+Runtime: <YOUR_RUNTIME_ID> (READY v1)
 ECR: bedrock-agentcore-cost-router-agent
 DynamoDB: agent-response-cache
 CodeBuild: cost-router-agent-build (ARM64)
